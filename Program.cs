@@ -12,6 +12,7 @@ namespace HNI_TPmoyennes
             // Création d'une classe
             Classe sixiemeA = new Classe("6eme A");
             // Ajout des élèves à la classe
+			//comment
             sixiemeA.ajouterEleve("Jean", "RAGE");
             sixiemeA.ajouterEleve("Paul", "HAAR");
             sixiemeA.ajouterEleve("Sibylle", "BOQUET");
