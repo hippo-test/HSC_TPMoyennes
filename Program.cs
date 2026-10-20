@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml;
 
 namespace HNI_TPmoyennes
 {
@@ -10,6 +12,110 @@ namespace HNI_TPmoyennes
         static void Main(string[] args)
         {
             // Création d'une classe
+            //Classe eleve
+            public class Eleve
+        {
+            public string prenom { get; set; };
+            public string nom { get; set; };
+            public List<Note> notes { get; set; };
+
+            public Eleve(string pnom, string nnom)
+            {
+                this.prenom = pnom;
+                this.nom = nnom;
+                notes = new List<Note>();
+            }
+            public ajouterNotes(Note n)
+            { if (notes.length < 200)
+                {
+                    notes.Add(n);
+                }
+                else
+                {
+                    Console.WriteLine("erreur maximum notes autorisé 200")
+                }
+            }
+            public double moyenneMatiere(int m)
+            {
+                double temp = 0;
+                double nbnote = 0;
+                for (int i = 0; i < notes.Length; i++)
+                {
+                    if (notes[i].matiere == m)
+                    {
+                        temp += notes[i].note;
+                        nbnotes += 1;
+                    }
+                }
+                return Math.Round(temp / nbnote,2);
+            }
+            public double moyenneGeneral()
+            {
+                double temp = 0;
+                double nbnote = 0;
+                for (int i = 0; i < notes.Length; i++)
+                {
+                    temp += notes[i].note;
+                    nbnotes += 1;
+                }
+                return Math.Round(temp / nbnote,2);
+            }
+        }
+            //class Classe
+            public class Classe {
+
+            public List<Eleve> eleves { get; set; };
+            public List<string matiere> matieres { get; set; };
+            public Classe(string classe)
+            {
+                eleves= new List<Eleve>();
+                matieres= new List<string>();
+            }
+            public void ajouterEleve(string prenom, string nom)
+            {
+                    if (eleves.Count == 30)
+                    {
+                        Console.WriteLine("erreur max eleves par classe 30");
+                    }
+                    else
+                    {
+                        temp = Eleve(prenom, nom);
+                    }
+                eleves.Add(temp);
+            }
+            public void ajouterMatiere(string matiere)
+            {
+                    if (matiere.Length == 10)
+                    {
+
+                        Console.WriteLine("erreur max matiere 10");
+                    }
+                    else
+                    {
+                        matieres.Add(matiere);
+                    }
+            }
+            public double moyenneMatiere(int m)
+            {
+                double temp = 0;
+                double nbeleve = (double)eleves.Length;
+                for(int i = 0; i < eleves.Length; i++)
+                {
+                    temp += eleves.moyenneMatiere(m);
+                }
+                return Math.Round(temp / nbeleve, 2);
+            }
+            public double moyenneGeneral()
+            {
+                double temp = 0;
+                double nbeleve = (double)eleves.Length;
+                for (int i = 0; i < eleves.Length; i++)
+                {
+                    temp += eleves.moyenneGeneral();
+                }
+                return Math.Round(temp / nbeleve, 2);
+            }
+        }
             Classe sixiemeA = new Classe("6eme A");
             // Ajout des élèves à la classe
 			//comment
