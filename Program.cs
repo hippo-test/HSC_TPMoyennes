@@ -26,7 +26,7 @@ namespace HNI_TPmoyennes
             }
             else
             {
-                Console.WriteLine("erreur maximum notes autorisé 200");
+                Console.WriteLine("erreur maximum notes autorisé 200 pour eleve" + this.prenom + " " + this.nom);
             }
         }
         public double moyenneMatiere(int m)
@@ -47,9 +47,14 @@ namespace HNI_TPmoyennes
         {
             double temp = 0;
             double nbnote = 0;
+            HashSet<int> matiereseleve = new HashSet<int>();
             for (int i = 0; i < notes.Count; i++)
             {
-                temp += notes[i].note;
+                matiereseleve.Add(notes[i].matiere);
+            }
+            foreach (int m in matiereseleve)
+            {
+                temp += this.moyenneMatiere(m);
                 nbnote += 1;
             }
             return Math.Round(temp / nbnote, 2);
@@ -71,7 +76,7 @@ namespace HNI_TPmoyennes
         {
             if (eleves.Count == 30)
             {
-                Console.WriteLine("erreur max eleves par classe 30");
+                Console.WriteLine("erreur max eleves par classe 30"+ prenom + " " + nom);
             }
             else
             {
@@ -84,7 +89,7 @@ namespace HNI_TPmoyennes
             if (matieres.Count == 10)
             {
 
-                Console.WriteLine("erreur max matieres 10");
+                Console.WriteLine("erreur max matieres 10"+ matiere);
             }
             else
             {
@@ -104,12 +109,12 @@ namespace HNI_TPmoyennes
         public double moyenneGeneral()
         {
             double temp = 0;
-            double nbeleve = (double)eleves.Count;
-            for (int i = 0; i < eleves.Count; i++)
+            double nbmatiere = (double)matieres.Count;
+            for (int i = 0; i < matieres.Count; i++)
             {
-                temp += eleves[i].moyenneGeneral();
+                temp += this.moyenneMatiere(i);
             }
-            return Math.Round(temp / nbeleve, 2);
+            return Math.Round(temp / nbmatiere, 2);
         }
     }
     class Program
@@ -140,12 +145,18 @@ namespace HNI_TPmoyennes
             // Ajout de 5 notes à chaque élève et dans chaque matière
             for (int ieleve = 0; ieleve < sixiemeA.eleves.Count; ieleve++)
             {
+                //Console.WriteLine("nouvel eleve");
                 for (int matiere = 0; matiere < sixiemeA.matieres.Count; matiere++)
                 {
+                    //Console.WriteLine("nouvelle matiere"); 
                     for (int i = 0; i < 5; i++)
                     {
-                        sixiemeA.eleves[ieleve].ajouterNote(new Note(matiere, (float)((6.5 +
-                       random.NextDouble() * 34)) / 2.0f));
+                        //float valeur = (float)((6.5 + random.NextDouble() * 34)) / 2.0f;
+                        //Note T = new Note(matiere,valeur);
+                        Note T = new Note(matiere, (float)((6.5 +
+                        random.NextDouble() * 34)) / 2.0f);
+                        sixiemeA.eleves[ieleve].ajouterNote(T);
+                        //Console.WriteLine("note :" + valeur+ sixiemeA.matieres[matiere]+ sixiemeA.eleves[ieleve].nom);
                         // Note minimale = 3
                     }
                 }
