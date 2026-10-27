@@ -41,7 +41,7 @@ namespace HNI_TPmoyennes
                     nbnote += 1;
                 }
             }
-            return Math.Round(temp / nbnote, 2);
+            return Math.Truncate(100*(temp / nbnote))/100;
         }
         public double moyenneGeneral()
         {
@@ -57,7 +57,7 @@ namespace HNI_TPmoyennes
                 temp += this.moyenneMatiere(m);
                 nbnote += 1;
             }
-            return Math.Round(temp / nbnote, 2);
+            return Math.Truncate(100*(temp / nbnote))/100;
         }
     }
     //class Classe
@@ -104,7 +104,7 @@ namespace HNI_TPmoyennes
             {
                 temp += eleves[i].moyenneMatiere(m);
             }
-            return Math.Round(temp / nbeleve, 2);
+            return Math.Truncate(100*(temp / nbeleve))/100;
         }
         public double moyenneGeneral()
         {
@@ -114,7 +114,7 @@ namespace HNI_TPmoyennes
             {
                 temp += this.moyenneMatiere(i);
             }
-            return Math.Round(temp / nbmatiere, 2);
+            return Math.Truncate(100 * (temp / nbmatiere)) / 100;
         }
     }
     class Program
@@ -141,6 +141,13 @@ namespace HNI_TPmoyennes
             sixiemeA.ajouterMatiere("Anglais");
             sixiemeA.ajouterMatiere("Physique/Chimie");
             sixiemeA.ajouterMatiere("Histoire");
+            /*sixiemeA.ajouterMatiere("analyse");
+            sixiemeA.ajouterMatiere("troll");
+            sixiemeA.ajouterMatiere("67");
+            sixiemeA.ajouterMatiere("machinchouette");
+            sixiemeA.ajouterMatiere("aurafarming");
+            sixiemeA.ajouterMatiere("battle aura");
+            sixiemeA.ajouterMatiere("fortnite");*/
             Random random = new Random();
             // Ajout de 5 notes à chaque élève et dans chaque matière
             for (int ieleve = 0; ieleve < sixiemeA.eleves.Count; ieleve++)
@@ -148,7 +155,8 @@ namespace HNI_TPmoyennes
                 //Console.WriteLine("nouvel eleve");
                 for (int matiere = 0; matiere < sixiemeA.matieres.Count; matiere++)
                 {
-                    //Console.WriteLine("nouvelle matiere"); 
+                    //Console.WriteLine("nouvelle matiere");
+                    //Console.WriteLine(sixiemeA.matieres[matiere]);
                     for (int i = 0; i < 5; i++)
                     {
                         //float valeur = (float)((6.5 + random.NextDouble() * 34)) / 2.0f;
